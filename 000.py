@@ -59,30 +59,38 @@ def get_bars(symbol):
     return bars
 
 # help(api.submit_order)
+##web
+from flask import Flask, render_template, request
+import subprocess
+import flask
 
-rep = 0
-while True:
-    rep+=1
-    print('rep:  ',rep)
-    # GET DATA
-    bars = get_bars(symbol=SYMBOL)
-    # CHECK POSITIONS
-    position = get_position(symbol=SYMBOL)
-    should_buy = get_signal(bars.sma_fast,bars.sma_slow)
-    print(f"Position: {position} / Should Buy: {should_buy}")
-    if position == 0 and should_buy == True:
-        # WE BUY ONE BITCOIN
-        # api.submit_order(SYMBOL, qty=QTY_PER_TRADE, side='buy')
-        api.submit_order(symbol=SYMBOL, qty=QTY_PER_TRADE, side='buy', type='market', time_in_force='gtc')#day, gtc, opg, cls, ioc, fok
-        print(f'Symbol: {SYMBOL} / Side: BUY / Quantity: {QTY_PER_TRADE}')
-    elif position > 0 and should_buy == False:
-        # WE SELL ONE BITCOIN
-        api.submit_order(SYMBOL, qty=QTY_PER_TRADE, side='sell')
-        print(f'Symbol: {SYMBOL} / Side: SELL / Quantity: {QTY_PER_TRADE}')
+app = Flask(__name__)
 
-    time.sleep(get_pause())
-    print("*"*20)
+@app.route('/', methods=['GET','POST'])
+def mainLoop():
 
+    rep = 0
+    while True:
+        rep+=1
+        print('rep:  ',rep)
+        # GET DATA
+        bars = get_bars(symbol=SYMBOL)
+        # CHECK POSITIONS
+        position = get_position(symbol=SYMBOL)
+        should_buy = get_signal(bars.sma_fast,bars.sma_slow)
+        print(f"Position: {position} / Should Buy: {should_buy}")
+        if position == 0 and should_buy == True:
+            # WE BUY ONE BITCOIN
+            # api.submit_order(SYMBOL, qty=QTY_PER_TRADE, side='buy')
+            api.submit_order(symbol=SYMBOL, qty=QTY_PER_TRADE, side='buy', type='market', time_in_force='gtc')#day, gtc, opg, cls, ioc, fok
+            print(f'Symbol: {SYMBOL} / Side: BUY / Quantity: {QTY_PER_TRADE}')
+        elif position > 0 and should_buy == False:
+            # WE SELL ONE BITCOIN
+            api.submit_order(SYMBOL, qty=QTY_PER_TRADE, side='sell')
+            print(f'Symbol: {SYMBOL} / Side: SELL / Quantity: {QTY_PER_TRADE}')
+
+        time.sleep(get_pause())
+        print("*"*20)
 
 
 # # Fetch Account
