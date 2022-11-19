@@ -1,1 +1,1 @@
-web: python3 000.py
+worker: python 000.py
