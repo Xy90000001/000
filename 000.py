@@ -92,16 +92,20 @@ from flask import Flask, render_template, request
 lstr =[]
 app = Flask(__name__)
 
-@app.route('/', methods=['GET','POST'])
-def my_form_post() -> 'html':
-    if flask.request.method == 'GET':
-        # redirect('/in')
-        return 'duh'+str(lstr)
+@app.route('/')
+def home():
+  return 'duh ...!'
 
-    elif flask.request.method == 'POST':
-        # var = request.form['variable']
-        # return render_template('form.html', value=output)
-        return 'duh!.......'+str(lstr)
+# @app.route('/', methods=['GET','POST'])
+# def my_form_post() -> 'html':
+#     if flask.request.method == 'GET':
+#         # redirect('/in')
+#         return 'duh'+str(lstr)
+
+#     elif flask.request.method == 'POST':
+#         # var = request.form['variable']
+#         # return render_template('form.html', value=output)
+#         return 'duh!.......'+str(lstr)
 
 # app.run(debug=True)
 
@@ -152,7 +156,7 @@ def mainloop():
     return lstr #, f'Symbol: {SYMBOL} / Side: BUY / Quantity: {QTY_PER_TRADE}'
 
 def web():
-    app.run(debug=True, Port = int(os.environ.get("PORT", 8008)), host='0.0.0.0' )    
+    app.run(debug=True)#, Port = int(os.environ.get("PORT", 8008)), host='0.0.0.0' )    
 
 # r = 0
 # while True:
