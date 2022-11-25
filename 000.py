@@ -88,6 +88,7 @@ from flask import Flask, render_template, request
 # globalize(rep)
 # rep = 0
 # global rep
+lstr =[]
 app = Flask(__name__)
 
 @app.route('/', methods=['GET','POST'])
@@ -102,7 +103,6 @@ def my_form_post() -> 'html':
         return 'duh!.......'+str(lstr)
 
 # app.run(debug=True)
-lstr =[]
 
 def mainloop():
     rep = 0
@@ -163,11 +163,11 @@ def web():
 web()
 
 import threading
-if __name__ == "__main__":
-    x = threading.Thread(target=mainloop)#, args=(a,))
-   # threads.append(x)
-    x.start()
-    time.sleep(1)
+# if __name__ == "__main__":
+#     x = threading.Thread(target=mainloop)#, args=(a,))
+#    # threads.append(x)
+#     x.start()
+#     time.sleep(1)
 # app.run(debug=True)
 
 # web()
