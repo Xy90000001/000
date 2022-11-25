@@ -151,7 +151,7 @@ def mainloop():
     return lstr #, f'Symbol: {SYMBOL} / Side: BUY / Quantity: {QTY_PER_TRADE}'
 
 def web():
-    app.run(debug=True)    
+    app.run(debug=True, Port = int(os.environ.get("PORT", 8008)), host=0.0.0.0)    
 
 # r = 0
 # while True:
