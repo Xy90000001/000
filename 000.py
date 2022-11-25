@@ -165,10 +165,12 @@ def web():
 #     app.run(debug=True)
 #     print('qwerty')
 
-web()
+# web()
 
 import threading
-# if __name__ == "__main__":
+if __name__ == "__main__":
+  web()
+  
 #     x = threading.Thread(target=mainloop)#, args=(a,))
 #    # threads.append(x)
 #     x.start()
