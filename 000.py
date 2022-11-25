@@ -7,12 +7,13 @@ import pandas as pd
 
 # API Info for fetching data, portfolio, etc. from Alpaca
 BASE_URL = "https://paper-api.alpaca.markets"
-ALPACA_API_KEY = "PKSSC84G6QW31L528V6T"
-ALPACA_SECRET_KEY = "Q60Q86tiCXqqjTfKjcb5zKGWpebMjQBX4F9KeNmi"
+ALPACA_API_KEY = "PKT4SCGG9HB02E5VFTVW"
+ALPACA_SECRET_KEY = "pDluLKOnSTlqP58JCSNVxtfXAX8uPJayHB7buwEf"
 
 # Instantiate REST API Connection
 api = tradeapi.REST(key_id=ALPACA_API_KEY, secret_key=ALPACA_SECRET_KEY, 
                     base_url=BASE_URL, api_version='v1')
+acc = api.get_account()
 
 from datetime import datetime, timedelta
 import math
@@ -22,8 +23,25 @@ SYMBOL = 'BTCUSD'
 # SYMBOL = 'XMRUSD'
 SMA_FAST = 12
 SMA_SLOW = 24
-QTY_PER_TRADE = 1
+# QTY_PER_TRADE = 1
+power, status = acc.buying_power, acc.status #acc.currency,
+# equity =acc.equity
+portfolio = api.list_positions()
+coinrol = portfolio[0]  #TK mul coin latr
+# print(p.qty)
+qty2buy = 100
+qty2sel = coinrol.qty #notional
 
+
+# clock = api.get_clock()
+# if clock.is_open:
+#     print('Market is open')
+# else:
+#     print('Market is closed')
+
+
+# active_assets = api.list_assets(status='active')
+# print(active_assets[0])
 
 # Description is given in the article
 def get_pause():
@@ -62,63 +80,87 @@ def get_bars(symbol):
 # help(api.submit_order)
 ##web
 
-# from flask import Flask, render_template, request
+from flask import Flask, render_template, request
 # import subprocess
-rep = 0
+# rep = 0
 # globalize(rep)
 # rep = 0
 # global rep
-# app = Flask(__name__)
+app = Flask(__name__)
 
 
-# @app.route('/')#, methods=['GET','POST'])
-# def my_form_post():
-    # return 'duh!.......'
+@app.route('/')#, methods=['GET','POST'])
+def my_form_post():
+    return 'duh!.......'+str(lstr)
 
 # app.run(debug=True)
-    
-rep = 0
-while True:
-    print('startloo')
-    rep = rep+1
-    print('rep:  ',rep)
-            # GET DATA
-    bars = get_bars(symbol=SYMBOL)
-            # CHECK POSITIONS
-    position = get_position(symbol=SYMBOL)
-    should_buy = get_signal(bars.sma_fast,bars.sma_slow)
-    print(f"Position: {position} / Should Buy: {should_buy}")
+lstr =[]
 
-    if position == 0 and should_buy == True:
-        # WE BUY ONE BITCOIN
-        # api.submit_order(SYMBOL, qty=QTY_PER_TRADE, side='buy')
-        try:
-            api.submit_order(symbol=SYMBOL, qty=QTY_PER_TRADE, side='buy', type='market', time_in_force='gtc')#day, gtc, opg, cls, ioc, fok
-            print(f'Symbol: {SYMBOL} / Side: BUY / Quantity: {QTY_PER_TRADE}')
-        except:
-            print('insufficient fund')
-        # return 'symbol; '
-    elif position > 0 and should_buy == False:
-        # WE SELL ONE BITCOIN
-        try:
-            api.submit_order(SYMBOL, qty=QTY_PER_TRADE, side='sell',time_in_force='gtc' )
-            print(f'Symbol: {SYMBOL} / Side: SELL / Quantity: {QTY_PER_TRADE}')
-        except:
-            print('insufficient')
+def mainloop():
+    rep = 0
+    while True:
+        # app.run(debug=True)
+        # @app.route('/')#, methods=['GET','POST'])
+        # def my_form_post():
+        #     return 'duh'
+        print('startloo')
+        rep = rep+1
+        print('rep:  ',rep)
+                # GET DATA
+        bars = get_bars(symbol=SYMBOL)
+                # CHECK POSITIONS
+        position = get_position(symbol=SYMBOL)
+        should_buy = get_signal(bars.sma_fast,bars.sma_slow)
+        print(f"Position: {position} / Should Buy: {should_buy}")
+
+        if position == 0 and should_buy == True:
+            # WE BUY ONE BITCOIN
+            # api.submit_order(SYMBOL, qty=QTY_PER_TRADE, side='buy')
+            try:
+                api.submit_order(symbol=SYMBOL, notional=qty2buy, side='buy', type='market', time_in_force='gtc')#day, gtc, opg, cls, ioc, fok
+                print(f'Symbol: {SYMBOL} / Side: BUY / Quantity: {qty2buy} ')
+            except:
+                print('insufficient fund')
+            # return 'symbol; '
+        elif position > 0 and should_buy == False:
+            # WE SELL ONE BITCOIN
+            try:
+                api.submit_order(SYMBOL, qty=qty2sel, side='sell',time_in_force='gtc' )
+                print(f'Symbol: {SYMBOL} / Side: SELL / Quantity: {qty2sel}')
+            except:
+                print('insufficient')
 
 
 
-    time.sleep(get_pause())
-    print("*"*20)
-    print('endloop')
+        time.sleep(get_pause())
+        print("*"*20)
+        print('endloop')
     # @app.route('/')#, methods=['GET','POST'])
     # def my_form_post():
     #     return 'duh'#print("*"*20)
-#     return str(rep)#, f'Symbol: {SYMBOL} / Side: SELL / Quantity: {QTY_PER_TRADE}\n', f'Symbol: {SYMBOL} / Side: BUY / Quantity: {QTY_PER_TRADE}'
+        lstr.clear()
+        lstr.append(f'Symbol: {SYMBOL} / Side: SELL / Quantity: {qty2sel}, sell: {qty2buy},\n{portfolio} ')
+    return lstr #, f'Symbol: {SYMBOL} / Side: BUY / Quantity: {QTY_PER_TRADE}'
 
-# if __name__ == "__main__":
+def web():
+    app.run(debug=True)    
+
+# r = 0
+# while True:
+#     r+=1
+#     print('asdf',r)
+#     app.run(debug=True)
+#     print('qwerty')
+
+import threading
+if __name__ == "__main__":
+    x = threading.Thread(target=mainloop)#, args=(a,))
+   # threads.append(x)
+    x.start()
+    time.sleep(1)
 # app.run(debug=True)
 
+web()
 
 # # Fetch Account
 # account = api.get_account()
