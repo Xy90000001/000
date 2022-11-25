@@ -152,6 +152,8 @@ def web():
 #     app.run(debug=True)
 #     print('qwerty')
 
+web()
+
 import threading
 if __name__ == "__main__":
     x = threading.Thread(target=mainloop)#, args=(a,))
@@ -160,7 +162,7 @@ if __name__ == "__main__":
     time.sleep(1)
 # app.run(debug=True)
 
-web()
+# web()
 
 # # Fetch Account
 # account = api.get_account()
