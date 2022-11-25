@@ -1,1 +1,1 @@
-worker: python3 000.py
+web: gunicorn 000:app
