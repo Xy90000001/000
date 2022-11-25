@@ -27,10 +27,12 @@ SMA_SLOW = 24
 power, status = acc.buying_power, acc.status #acc.currency,
 # equity =acc.equity
 portfolio = api.list_positions()
-coinrol = portfolio[0]  #TK mul coin latr
+# if portfolio ==
+# coinrol = portfolio[:]  #TK mul coin latr
+# print(coinrol)
 # print(p.qty)
 qty2buy = 100
-qty2sel = coinrol.qty #notional
+# qty2sel = coinrol.qty #notional
 
 
 # clock = api.get_clock()
@@ -131,8 +133,8 @@ def mainloop():
         elif position > 0 and should_buy == False:
             # WE SELL ONE BITCOIN
             try:
-                api.submit_order(SYMBOL, qty=qty2sel, side='sell',time_in_force='gtc' )
-                print(f'Symbol: {SYMBOL} / Side: SELL / Quantity: {qty2sel}')
+                api.submit_order(SYMBOL, qty=get_position(SYMBOL), side='sell',time_in_force='gtc' )
+                print(f'Symbol: {SYMBOL} / Side: SELL / Quantity: {get_position(SYMBOL)}')
             except:
                 print('insufficient')
 
@@ -145,7 +147,7 @@ def mainloop():
     # def my_form_post():
     #     return 'duh'#print("*"*20)
         lstr.clear()
-        lstr.append(f'Symbol: {SYMBOL} / Side: SELL / Quantity: {qty2sel}, sell: {qty2buy},\n{portfolio} ')
+        lstr.append(f'Symbol: {SYMBOL} / Side: SELL / Quantity: {get_position(SYMBOL)}, sell: {qty2buy},\n{portfolio} ')
     return lstr #, f'Symbol: {SYMBOL} / Side: BUY / Quantity: {QTY_PER_TRADE}'
 
 def web():
