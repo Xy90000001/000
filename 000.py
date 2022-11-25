@@ -4,6 +4,7 @@ import alpaca_trade_api as tradeapi
 # from alpaca_trade_api import TimeFrame
 from alpaca_trade_api.rest import REST, TimeFrame
 import pandas as pd
+import os
 
 # API Info for fetching data, portfolio, etc. from Alpaca
 BASE_URL = "https://paper-api.alpaca.markets"
