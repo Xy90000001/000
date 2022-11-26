@@ -83,19 +83,19 @@ def get_bars(symbol):
 # help(api.submit_order)
 ##web
 
-# from flask import Flask, render_template, request
-# # import subprocess
-# # rep = 0
-# # globalize(rep)
-# # rep = 0
-# # global rep
-# lstr =[]
-# li='dududuDuuuhh'
-# app = Flask(__name__)
+from flask import Flask, render_template, request
+# import subprocess
+# rep = 0
+# globalize(rep)
+# rep = 0
+# global rep
+lstr =[]
+li='dududuDuuuhh'
+app = Flask(__name__)
 
-# @app.route('/')
-# def home():
-#   return 'duh ...!'+str(li)+str(lstr)
+@app.route('/')
+def home():
+  return 'duh ...!'+str(li)+str(lstr)
 
 # @app.route('/', methods=['GET','POST'])
 # def my_form_post() -> 'html':
@@ -156,30 +156,38 @@ def mainloop():
         lstr.append(f'Symbol: {SYMBOL} / Side: SELL / Quantity: {get_position(SYMBOL)}, sell: {qty2buy},\n{portfolio} ')
     return lstr #, f'Symbol: {SYMBOL} / Side: BUY / Quantity: {QTY_PER_TRADE}'
 
-# def web():
-#     app.run(debug=True)#, Port = int(os.environ.get("PORT", 8008)), host='0.0.0.0' )    
+def web():
+    app.run(debug=True)#, Port = int(os.environ.get("PORT", 8008)), host='0.0.0.0' )    
 
-# r = 0
-# while True:
-#     r+=1
-#     print('asdf',r)
-#     app.run(debug=True)
-#     print('qwerty')
+l = []
+def loop():
+  r = 0
+  while True:
+      r+=1
+      print('asdf',r)
+      l.append(r)
+      print(l)
+#   return ,l
+#       app.run(debug=True)
+#       print('qwerty')
 
 # web()
 
-# import threading
+
+import threading
 if __name__ == "__main__":
-  mainloop()
+#   mainloop()
+#   loop(a)
 #   web()
 #     x = threading.Thread(target=mainloop)#, args=(a,))
+    x = threading.Thread(target=loop)#, args=(a,))
 #    # threads.append(x)
 #     x.start()
 #     time.sleep(1)
 # app.run(debug=True)
 
 
-# web()
+web()
 
 # # Fetch Account
 # account = api.get_account()
