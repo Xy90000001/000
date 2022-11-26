@@ -177,7 +177,7 @@ def web():
 import threading
 if __name__ == "__main__":
   
-#   mainloop()
+  mainloop()
 #   loop()
 #   web()
 #     x = threading.Thread(target=mainloop)#, args=(a,))
