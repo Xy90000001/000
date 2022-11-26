@@ -83,19 +83,19 @@ def get_bars(symbol):
 # help(api.submit_order)
 ##web
 
-from flask import Flask, render_template, request
-# import subprocess
-# rep = 0
-# globalize(rep)
-# rep = 0
-# global rep
-lstr =[]
-li='dududuDuuuhh'
-app = Flask(__name__)
+# from flask import Flask, render_template, request
+# # import subprocess
+# # rep = 0
+# # globalize(rep)
+# # rep = 0
+# # global rep
+# lstr =[]
+# li='dududuDuuuhh'
+# app = Flask(__name__)
 
-@app.route('/')
-def home():
-  return 'duh ...!'+str(li)+str(lstr)
+# @app.route('/')
+# def home():
+#   return 'duh ...!'+str(li)+str(lstr)
 
 # @app.route('/', methods=['GET','POST'])
 # def my_form_post() -> 'html':
@@ -156,8 +156,8 @@ def mainloop():
         lstr.append(f'Symbol: {SYMBOL} / Side: SELL / Quantity: {get_position(SYMBOL)}, sell: {qty2buy},\n{portfolio} ')
     return lstr #, f'Symbol: {SYMBOL} / Side: BUY / Quantity: {QTY_PER_TRADE}'
 
-def web():
-    app.run(debug=True)#, Port = int(os.environ.get("PORT", 8008)), host='0.0.0.0' )    
+# def web():
+#     app.run(debug=True)#, Port = int(os.environ.get("PORT", 8008)), host='0.0.0.0' )    
 
 # r = 0
 # while True:
