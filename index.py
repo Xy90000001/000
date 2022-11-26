@@ -168,16 +168,18 @@ def web():
 
 # web()
 
-import threading
+# import threading
 if __name__ == "__main__":
+  mainloop()
 #   web()
-    x = threading.Thread(target=mainloop)#, args=(a,))
-   # threads.append(x)
-    x.start()
-    time.sleep(1)
+#     x = threading.Thread(target=mainloop)#, args=(a,))
+#    # threads.append(x)
+#     x.start()
+#     time.sleep(1)
 # app.run(debug=True)
 
-web()
+
+# web()
 
 # # Fetch Account
 # account = api.get_account()
