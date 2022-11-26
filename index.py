@@ -90,11 +90,12 @@ from flask import Flask, render_template, request
 # rep = 0
 # global rep
 lstr =[]
+li='dududuDuuuhh'
 app = Flask(__name__)
 
-@app.route('/duh')
+@app.route('/')
 def home():
-  return 'duh ...!'+str(lstr)
+  return 'duh ...!'+str(li)+str(lstr)
 
 # @app.route('/', methods=['GET','POST'])
 # def my_form_post() -> 'html':
