@@ -159,14 +159,14 @@ def mainloop():
 def web():
     app.run(debug=True)#, Port = int(os.environ.get("PORT", 8008)), host='0.0.0.0' )    
 
-l = []
-def loop():
-  r = 0
-  while True:
-      r+=1
-      print('asdf',r)
-      l.append(r)
-      print(l)
+# l = []
+# def loop():
+#   r = 0
+#   while True:
+#       r+=1
+#       print('asdf',r)
+#       l.append(r)
+#       print(l)
 #   return ,l
 #       app.run(debug=True)
 #       print('qwerty')
@@ -177,8 +177,8 @@ def loop():
 import threading
 if __name__ == "__main__":
   
-#   mainloop()
-  loop()
+  mainloop()
+#   loop()
 #   web()
 #     x = threading.Thread(target=mainloop)#, args=(a,))
 #     x = threading.Thread(target=loop)#, args=(a,))
