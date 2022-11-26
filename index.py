@@ -92,9 +92,9 @@ from flask import Flask, render_template, request
 lstr =[]
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/duh')
 def home():
-  return 'duh ...!'
+  return 'duh ...!'+str(lstr)
 
 # @app.route('/', methods=['GET','POST'])
 # def my_form_post() -> 'html':
@@ -169,15 +169,14 @@ def web():
 
 import threading
 if __name__ == "__main__":
-  web()
-  
-#     x = threading.Thread(target=mainloop)#, args=(a,))
-#    # threads.append(x)
-#     x.start()
-#     time.sleep(1)
+#   web()
+    x = threading.Thread(target=mainloop)#, args=(a,))
+   # threads.append(x)
+    x.start()
+    time.sleep(1)
 # app.run(debug=True)
 
-# web()
+web()
 
 # # Fetch Account
 # account = api.get_account()
