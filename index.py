@@ -3,8 +3,8 @@ print('...000...')
 import alpaca_trade_api as tradeapi
 # from alpaca_trade_api import TimeFrame
 from alpaca_trade_api.rest import REST, TimeFrame
-import pandas as pd
-import os
+# import pandas as pd
+# import os
 
 # API Info for fetching data, portfolio, etc. from Alpaca
 BASE_URL = "https://paper-api.alpaca.markets"
@@ -154,7 +154,7 @@ def mainloop():
     #     return 'duh'#print("*"*20)
         lstr.clear()
         lstr.append(f'Symbol: {SYMBOL} / Side: SELL / Quantity: {get_position(SYMBOL)}, sell: {qty2buy},\n{portfolio} ')
-    return lstr #, f'Symbol: {SYMBOL} / Side: BUY / Quantity: {QTY_PER_TRADE}'
+#     return lstr #, f'Symbol: {SYMBOL} / Side: BUY / Quantity: {QTY_PER_TRADE}'
 
 def web():
     app.run(debug=True)#, Port = int(os.environ.get("PORT", 8008)), host='0.0.0.0' )    
@@ -177,7 +177,7 @@ def web():
 import threading
 if __name__ == "__main__":
   
-  mainloop()
+#   mainloop()
 #   loop()
 #   web()
 #     x = threading.Thread(target=mainloop)#, args=(a,))
