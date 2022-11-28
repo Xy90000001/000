@@ -17,7 +17,8 @@ def loop():
 # def my_form_post():
 @app.route('/')
 def my_form_post():
-  return 'duh!....!'+str(a)+str(l)
+  return 'duh'
+#   return 'duh!....!'+str(a)+str(l)
 
 def web():    
   app.run(debug=True)
@@ -26,11 +27,11 @@ def web():
     
 # if __name__==__main__:
 import threading
-if __name__ == "__main__":
-    x = threading.Thread(target=loop)#, args=(a,))
-   # threads.append(x)
-    x.start()
-    time.sleep(1)
+# if __name__ == "__main__":
+#     x = threading.Thread(target=loop)#, args=(a,))
+#    # threads.append(x)
+#     x.start()
+#     time.sleep(1)
         
-web()
+  web()
 
