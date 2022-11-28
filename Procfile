@@ -1,1 +1,1 @@
-web: python3 tes.py
+web: gunicorn tes:app
