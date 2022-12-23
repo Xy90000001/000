@@ -4,17 +4,19 @@
 
 from flask import Flask, render_template, request
 import subprocess as s
-import flask
 import time, os
 
-file = open('cach.txt', 'r')
-# print(file.read())
-f = file.read()
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return 'duh'+str(f)
+file1 = open('cach.txt', 'r')
+# print(file.read())
+f = file1.read()
 
-app.run()
+
+@app.route('/')
+def appp():
+    return 'duh  '+str(f)
+
+if __name__=="__main__":
+    app.run(debug=True)
