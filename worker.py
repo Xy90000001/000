@@ -1,3 +1,5 @@
+import time
+
 a = 0
 l=[]
 while a<=11:
@@ -6,6 +8,7 @@ while a<=11:
   l.append(a)
   file =  open('cach.txt','w')
   file.write(str(l))
+  time.sleep(2)
 
   
   
