@@ -8,14 +8,22 @@ import time, os
 
 app = Flask(__name__)
 
-# file1 = open('cach.txt', 'r')
-# # print(file.read())
-# f = file1.read()
+file1 = open('cach.txt', 'r')
+# print(file.read())
+f = file1.read()
 
 
 @app.route('/')
 def appp():
-    return 'duh  '
+    return 'duh  '+str(f)
 
 if __name__=="__main__":
     app.run(debug=True)
+
+    
+    
+    
+    
+    
+    
+    
